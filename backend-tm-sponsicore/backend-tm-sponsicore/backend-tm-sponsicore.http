@@ -1,0 +1,6 @@
+@backend_tm_sponsicore_HostAddress = http://localhost:5071
+
+GET {{backend_tm_sponsicore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
