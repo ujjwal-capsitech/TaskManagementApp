@@ -9,6 +9,7 @@ import {
   Typography,
   Tag,
   Input,
+  Select,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useQuery } from "@tanstack/react-query";
@@ -81,7 +82,7 @@ const TaskPage: React.FC = () => {
       dataIndex: "taskId",
       key: "taskId",
       render: (id: string) => (
-        <Text strong style={{ color: "#f5222d" }}>
+        <Text strong underline style={{ color: "#834666" }}>
           {id}
         </Text>
       ),
@@ -101,16 +102,33 @@ const TaskPage: React.FC = () => {
       title: "Assignee's",
       dataIndex: "assignees",
       key: "assignees",
-      render: (assignees) =>
-        assignees?.map((a: any) => (
-          <Avatar
-            key={a.id}
-            style={{ background: "#fde3cf", color: "#f56a00", marginRight: 4 }}
-          >
-            {a.name.charAt(0)}
-          </Avatar>
-        )),
-    },
+      render: (assignees) => (
+        <Avatar.Group>
+          {assignees?.map((a: any, index: number) => {
+            const colors = ["#f56a00", "#7265e6", "#ffbf00", "#00a2ae", "#87d068"];
+            const bgColor = colors[index % colors.length];
+
+            return (
+              <Avatar
+                key={a.id}
+                style={{
+                  backgroundColor: bgColor,
+                  fontSize: 12,
+                  width: 28,
+                  height: 28,
+                  marginLeft: index === 0 ? 0 : -8, // slight overlap
+                  border: "2px solid #fff", // white border between overlaps
+                  zIndex: assignees.length - index, // control stacking
+                }}
+              >
+                {a.name?.charAt(0).toUpperCase()}
+              </Avatar>
+            );
+          })}
+        </Avatar.Group>
+      ),
+    }
+    ,
     {
       title: "Assigned date",
       dataIndex: "createdAt",
@@ -137,26 +155,27 @@ const TaskPage: React.FC = () => {
       ),
     },
     {
-      title: "Status",
+      title: " ",
       dataIndex: "status",
       key: "status",
       render: (status: number) => (
-        <Tag color={statusColors[status]}>
+        <Select style={{ width:"118px", height:"28px"}} defaultValue={status}
+        placeholder="Select Status">
           {status === 0
             ? "To do"
             : status === 1
-            ? "In progress"
-            : status === 2
-            ? "NTD"
-            : "Done"}
-        </Tag>
+              ? "In progress"
+              : status === 2
+                ? "NTD"
+                : "Done"}
+        </Select>
       ),
     },
   ];
 
   return (
     <>
-      <Row justify="space-between" align="middle" style={{ marginBottom: 16 ,padding:'8px'}}>
+      <Row justify="space-between" align="middle" style={{ marginBottom: 16, padding: '8px' }}>
         <Col>
           <Button
             type="primary"
@@ -183,6 +202,7 @@ const TaskPage: React.FC = () => {
             columns={columns}
             dataSource={tasksData || []}
             pagination={false}
+            style={{ overflowX: "auto", padding: '8px' }}
           />
         </Col>
       </Row>
