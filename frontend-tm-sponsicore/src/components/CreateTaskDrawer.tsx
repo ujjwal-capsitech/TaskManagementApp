@@ -16,6 +16,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { taskApi, userApi, projectApi } from "../Api/Api";
 import type { CreateTaskData, User, Project } from "../Api/type";
 import Attachment from "../assets/Attachment.svg";
+import "../App.css";
 
 const { TextArea } = Input;
 const { Title } = Typography;
@@ -56,7 +57,7 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
       description: values.description,
       dueDate: values.dueDate.format("YYYY-MM-DDTHH:mm:ssZ"),
       projectId: values.project,
-      reporterId: "U-09", // Hardcoded based on your example
+      reporterId: "U-09",
       assigneeIds: values.assignees,
       priority:
         values.priority === "High" ? 2 : values.priority === "Medium" ? 1 : 0,
@@ -67,19 +68,21 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
   return (
     <Drawer
       title={
-        <div>
+        <Col>
           <Title
             level={4}
             style={{
               margin: 0,
               fontSize: "16px",
               padding: "8px 0",
-              borderBottom: "2px solid #52c41a", // Green line below title
+              textDecoration: "underline",
+              textDecorationColor: "#52c41a",
+              // borderBottom: "2px solid #52c41a", // Green line below title
             }}
           >
             Add Task
           </Title>
-        </div>
+        </Col>
       }
       width={720}
       onClose={onClose}
@@ -89,11 +92,24 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
     >
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
         {/* Project Field */}
-        <Row gutter={16}>
-          <Col span={24}>
+        <Row gutter={4} style={{ marginBottom: "16px", alignItems: "center" }}>
+          <Col
+            span={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "8px",
+            }}
+          >
+            <span style={{ fontSize: "13px", color: "#8c8c8c" }}>
+              Project
+            </span>
+          </Col>
+
+          <Col span={20}>
             <Form.Item
               name="project"
-              label={<span style={{ fontSize: "13px" }}>Project</span>}
+              style={{ marginBottom: 0 }}
               rules={[{ required: true, message: "Please select a project" }]}
             >
               <Select
@@ -110,14 +126,26 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
             </Form.Item>
           </Col>
         </Row>
-        <Divider style={{ margin: "16px 0" }} />
+
+
 
         {/* Title Field */}
         <Row gutter={16}>
-          <Col span={24}>
+          <Col
+            span={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "8px",
+            }}
+          >
+            <span style={{ fontSize: "13px", color: "#464155" }}>
+              Reporter
+            </span>
+          </Col>
+          <Col span={20}>
             <Form.Item
               name="title"
-              label={<span style={{ fontSize: "13px" }}>Title</span>}
               rules={[{ required: true, message: "Please enter task title" }]}
             >
               <Input
@@ -128,14 +156,25 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
             </Form.Item>
           </Col>
         </Row>
-        <Divider style={{ margin: "16px 0" }} />
+
 
         {/* Reporter and Assignee Fields */}
         <Row gutter={16}>
-          <Col span={12}>
+          <Col
+            span={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "8px",
+            }}
+          >
+            <span style={{ fontSize: "13px", color: "#464155" }}>
+              Reporter
+            </span>
+          </Col>
+          <Col span={20}>
             <Form.Item
               name="reporter"
-              label={<span style={{ fontSize: "13px" }}>Reporter</span>}
             >
               <Input
                 defaultValue="Lucky"
@@ -145,10 +184,23 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
               />
             </Form.Item>
           </Col>
+          </Row>
+          <Row gutter={16}>
+          <Col
+            span={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "8px",
+            }}
+          >
+            <span style={{ fontSize: "13px", color: "#464155" }}>
+              Assignee
+            </span>
+          </Col>
           <Col span={12}>
             <Form.Item
               name="assignees"
-              label={<span style={{ fontSize: "13px" }}>Assignee</span>}
               rules={[{ required: true, message: "Please select assignees" }]}
             >
               <Select
@@ -160,7 +212,7 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
                 showArrow
               >
                 {usersData?.map((user: User) => (
-                  <Option key={user.id} value={user.userId}>
+                  <Option key={user.userId} value={user.userId}>
                     {user.name}
                   </Option>
                 ))}
@@ -168,14 +220,25 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
             </Form.Item>
           </Col>
         </Row>
-        <Divider style={{ margin: "16px 0" }} />
+
 
         {/* Description Field */}
         <Row gutter={16}>
-          <Col span={24}>
+          <Col
+            span={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "8px",
+            }}
+          >
+            <span style={{ fontSize: "13px", color: "#464155" }}>
+              Description
+            </span>
+          </Col>
+          <Col span={20}>
             <Form.Item
               name="description"
-              label={<span style={{ fontSize: "13px" }}>Description</span>}
             >
               <TextArea
                 rows={4}
@@ -186,14 +249,25 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
             </Form.Item>
           </Col>
         </Row>
-        <Divider style={{ margin: "16px 0" }} />
+
 
         {/* Priority and Due Date Fields */}
         <Row gutter={16}>
-          <Col span={12}>
+          <Col
+            span={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "8px",
+            }}
+          >
+            <span style={{ fontSize: "13px", color: "#464155" }}>
+              Priority
+            </span>
+          </Col>
+          <Col span={20}>
             <Form.Item
               name="priority"
-              label={<span style={{ fontSize: "13px" }}>Priority</span>}
               rules={[{ required: true, message: "Please select priority" }]}
             >
               <Select
@@ -207,10 +281,23 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
               </Select>
             </Form.Item>
           </Col>
-          <Col span={12}>
+          </Row>
+          <Row gutter={16}>
+            <Col
+            span={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "8px",
+            }}
+          >
+            <span style={{ fontSize: "13px", color: "#464155" }}>
+              Due Date
+            </span>
+          </Col>
+          <Col span={20}>
             <Form.Item
               name="dueDate"
-              label={<span style={{ fontSize: "13px" }}>Due date</span>}
               rules={[{ required: true, message: "Please select due date" }]}
             >
               <DatePicker
@@ -221,31 +308,56 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
             </Form.Item>
           </Col>
         </Row>
-        <Divider style={{ margin: "16px 0" }} />
+
 
         {/* Attachment Field */}
         <Row gutter={16}>
-          <Col span={24}>
+          <Col
+            span={4}
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              paddingLeft: "8px",
+            }}
+          >
+            <span style={{ fontSize: "13px", color: "#464155" }}>
+              Attachment
+            </span>
+          </Col>
+          <Col span={20}>
             <Form.Item
               name="attachment"
-              label={<span style={{ fontSize: "13px" }}>Attachment</span>}
+
             >
               <Upload.Dragger
+                className="custom-upload" 
                 name="file"
                 multiple={false}
                 beforeUpload={() => false}
-                style={{ fontSize: "13px" }}
-                listType="picture"
+                listType="text"
                 showUploadList={{
                   showPreviewIcon: false,
                   showRemoveIcon: true,
+                }}
+                style={{
+                  height: '153.82px',         
+                  width: '100%',           
+                  backgroundColor: '#fff', 
+                  border: '1px dashed #d9d9d9', 
+                  borderRadius: '6px',     
+
+                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  fontSize: '13px',  
                 }}
               >
                 <p className="ant-upload-drag-icon">
                   <img
                     src={Attachment}
                     alt="attachment"
-                    style={{ width: "24px", height: "24px" }}
+                    style={{ width: "85.42px", height: "87.82px" }}
                   />
                 </p>
                 <p
@@ -255,19 +367,23 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
                   Click or drag file to this area to upload
                 </p>
               </Upload.Dragger>
+
             </Form.Item>
           </Col>
         </Row>
 
         {/* Buttons */}
         <Row gutter={16} justify="end" style={{ marginTop: "24px" }}>
+          <Divider style={{ margin: "16px 0" }} />
           <Col>
-            <Button onClick={onClose} size="large">
+            <Button onClick={onClose} style={{background:"#EEEFF4",width:"82px",height:"28px",fontSize:"13px",textAlign:"center",alignContent:"center",borderRadius:"4px"}} size="large">
               Cancel
             </Button>
           </Col>
           <Col>
-            <Button type="primary" htmlType="submit" size="large">
+            <Button type="primary" htmlType="submit" 
+            style={{width:"82px",height:"28px",background:"#01B075",fontSize:"13px",textAlign:"center",alignContent:"center",borderRadius:"4px"}}
+            size="large">
               Save
             </Button>
           </Col>
