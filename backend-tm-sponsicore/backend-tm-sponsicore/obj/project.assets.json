@@ -1075,11 +1075,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CT_USER\\source\\repos\\TaskManagementSponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore.csproj",
+      "projectUniqueName": "C:\\Users\\CT_USER\\Documents\\GitHub\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore.csproj",
       "projectName": "backend-tm-sponsicore",
-      "projectPath": "C:\\Users\\CT_USER\\source\\repos\\TaskManagementSponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore.csproj",
+      "projectPath": "C:\\Users\\CT_USER\\Documents\\GitHub\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore.csproj",
       "packagesPath": "C:\\Users\\CT_USER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CT_USER\\source\\repos\\TaskManagementSponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore\\obj\\",
+      "outputPath": "C:\\Users\\CT_USER\\Documents\\GitHub\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

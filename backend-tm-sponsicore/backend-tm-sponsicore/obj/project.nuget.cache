@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Be+1F5Z24E0=",
+  "dgSpecHash": "/DH2R1pTj9s=",
   "success": true,
-  "projectFilePath": "C:\\Users\\CT_USER\\source\\repos\\TaskManagementSponsicore\\Backend-TM-Sponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore.csproj",
+  "projectFilePath": "C:\\Users\\CT_USER\\Documents\\GitHub\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\backend-tm-sponsicore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CT_USER\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\CT_USER\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",

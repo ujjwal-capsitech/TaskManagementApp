@@ -1,171 +1,114 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Avatar, Typography, List } from 'antd';
-import { activityLogApi } from '../Api/Api';
-import type { ActivityLog } from '../Api/type';
+import React, { useState } from "react";
+import { Row, Col, Select, Button, Avatar, Input, Divider, Tabs } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import CommentSection from "./CommentSection";
+import ActivityLog from "./TaskActivityLog";
 
-const { Text, Title } = Typography;
+const { Option } = Select;
+const { TextArea } = Input;
+const { TabPane } = Tabs;
 
-const TaskLog: React.FC = () => {
-  const [activityLogs, setActivityLogs] = useState<ActivityLog[]>([]);
-  const [todayLogs, setTodayLogs] = useState<ActivityLog[]>([]);
-  const [yesterdayLogs, setYesterdayLogs] = useState<ActivityLog[]>([]);
-  const [olderLogs, setOlderLogs] = useState<ActivityLog[]>([]);
+interface TaskLogProps {
+  taskId: string;
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await activityLogApi.getActivityLogs();
-        const logs = response.data.data;
-        setActivityLogs(logs);
-        
-        // Group logs by date
-        const today = new Date();
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
-        
-        const todayLogs = logs.filter(log => {
-          const logDate = new Date(log.createdAt);
-          return logDate.toDateString() === today.toDateString();
-        });
-        
-        const yesterdayLogs = logs.filter(log => {
-          const logDate = new Date(log.createdAt);
-          return logDate.toDateString() === yesterday.toDateString();
-        });
-        
-        const olderLogs = logs.filter(log => {
-          const logDate = new Date(log.createdAt);
-          return logDate < yesterday;
-        });
-        
-        setTodayLogs(todayLogs);
-        setYesterdayLogs(yesterdayLogs);
-        setOlderLogs(olderLogs);
-      } catch (error) {
-        console.error('Error fetching activity logs:', error);
-      }
-    };
-    
-    fetchData();
-  }, []);
+const TaskLog: React.FC<TaskLogProps> = ({ taskId }) => {
+  const [activeTab, setActiveTab] = useState("comments");
+  const [selectedMonth, setSelectedMonth] = useState("February");
+  const [newComment, setNewComment] = useState("");
 
-  const getInitials = (name: string) => {
-    return name.charAt(0).toUpperCase();
-  };
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-  const getAvatarColor = (name: string) => {
-    const colors = ['#f56a00', '#7265e6', '#ffbf00', '#00a2ae', '#87d068'];
-    const charCode = name.charCodeAt(0);
-    return colors[charCode % colors.length];
-  };
-
-  const formatTime = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
-      minute: '2-digit',
-      hour12: true 
-    });
-  };
-
-  const renderLogItem = (log: ActivityLog) => {
-    const initials = getInitials(log.userName);
-    const avatarColor = getAvatarColor(log.userName);
-    
-    return (
-      <Row gutter={16} style={{ marginBottom: 16 }}>
-        <Col span={2}>
-          <Avatar 
-            style={{ backgroundColor: avatarColor }}
-            size="large"
-          >
-            {initials}
-          </Avatar>
-        </Col>
-        <Col span={22}>
-          <Row>
-            <Col span={24}>
-              <Text strong>{log.userName}</Text>
-              {' '}
-              <Text>{log.activityTitle}</Text>
-              {' '}
-              <Text type="secondary">{log.taskTitle}</Text>
-            </Col>
-          </Row>
-          {log.activityDescription && (
-            <Row>
-              <Col span={24}>
-                <Text type="secondary">{log.activityDescription}</Text>
-              </Col>
-            </Row>
-          )}
-          {(log.stateFrom || log.stateTo) && (
-            <Row>
-              <Col span={24}>
-                <Text type="secondary">
-                  {log.stateFrom} &gt; {log.stateTo}
-                </Text>
-              </Col>
-            </Row>
-          )}
-          <Row>
-            <Col span={24}>
-              <Text type="secondary">{formatTime(log.createdAt)}</Text>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    );
+  const handleAddComment = () => {
+    if (newComment.trim()) {
+      // Add comment logic here
+      console.log("Adding comment:", newComment);
+      setNewComment("");
+    }
   };
 
   return (
-    <>
-      <Row>
-        <Col span={24}>
-          <Title level={4}>Task Logs</Title>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Title level={5}>February</Title>
-        </Col>
-      </Row>
-      
-      {todayLogs.length > 0 && (
-        <>
-          <Row>
-            <Col span={24}>
-              <Title level={5}>Today</Title>
-            </Col>
-          </Row>
-          <List
-            dataSource={todayLogs}
-            renderItem={renderLogItem}
-          />
-        </>
-      )}
-      
-      {yesterdayLogs.length > 0 && (
-        <>
-          <Row>
-            <Col span={24}>
-              <Title level={5}>Yesterday</Title>
-            </Col>
-          </Row>
-          <List
-            dataSource={yesterdayLogs}
-            renderItem={renderLogItem}
-          />
-        </>
-      )}
-      
-      {olderLogs.length > 0 && (
-        <List
-          dataSource={olderLogs}
-          renderItem={renderLogItem}
-        />
-      )}
-    </>
+    <Row>
+      <Col span={24}>
+        {/* Toggle and Month Selector */}
+        <Row
+          justify="space-between"
+          align="middle"
+          style={{ marginBottom: 16 }}
+        >
+          <Col>
+            <Tabs activeKey={activeTab} onChange={setActiveTab}>
+              <TabPane tab="Comment" key="comments" />
+              <TabPane tab="Activity" key="activities" />
+            </Tabs>
+          </Col>
+          <Col>
+            <Select
+              value={selectedMonth}
+              onChange={setSelectedMonth}
+              style={{ width: 120 }}
+            >
+              {months.map((month) => (
+                <Option key={month} value={month}>
+                  {month}
+                </Option>
+              ))}
+            </Select>
+          </Col>
+        </Row>
+
+        <Divider />
+
+        {/* Comment Input */}
+        <Row gutter={16} align="middle" style={{ marginBottom: 24 }}>
+          <Col>
+            <Avatar
+              icon={<UserOutlined />}
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: "100px",
+              }}
+            />
+          </Col>
+          <Col flex="auto">
+            <TextArea
+              rows={2}
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+          </Col>
+          <Col>
+            <Button type="primary" onClick={handleAddComment}>
+              Post
+            </Button>
+          </Col>
+        </Row>
+
+        <Divider />
+
+        {/* Comments or Activities */}
+        {activeTab === "comments" ? (
+          <CommentSection taskId={taskId} />
+        ) : (
+          <ActivityLog />
+        )}
+      </Col>
+    </Row>
   );
 };
 
