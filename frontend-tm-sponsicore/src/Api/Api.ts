@@ -1,5 +1,13 @@
+// Api.ts
 import axios from "axios";
-import type { Task, CreateTaskData, ApiResponse, User, Project } from "./type";
+import type {
+  Task,
+  CreateTaskData,
+  ApiResponse,
+  User,
+  Project,
+  ActivityLog,
+} from "./type";
 
 const API_BASE_URL = "https://localhost:7007/api";
 
@@ -22,4 +30,9 @@ export const userApi = {
 
 export const projectApi = {
   getProjects: () => api.get<ApiResponse<Project[]>>("/projects"),
+};
+
+export const activityLogApi = {
+  getActivityLogs: (projectId: string = "string") =>
+    api.get<ApiResponse<ActivityLog[]>>(`/activity/project/${projectId}`),
 };
