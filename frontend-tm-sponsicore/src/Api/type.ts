@@ -1,29 +1,25 @@
-export interface User {
-  id: string;
-  userId: string;
-  name: string;
-}
+// type.ts
 
-export interface Project {
-  projectId: string;
-  projectName: string;
+export interface ApiResponse<T> {
+  data: T;
+  status: boolean;
+  message: string;
 }
 
 export interface Task {
   id: string;
   taskId: string;
   taskTitle: string;
-  description: string;
-  dueDate: string;
-  project: Project;
-  reporter: User;
-  assignees: User[];
-  status: number;
-  priority: number;
-  attachment: string;
-  isDeleted: boolean;
+  projectId: string;
+  userId: string;
+  userName: string;
+  avatarUrl: string | null;
+  activityTitle: string;
+  activityDescription: string;
+  stateFrom: string | null;
+  stateTo: string | null;
   createdAt: string;
-  updatedAt: string;
+  isDeleted: boolean;
 }
 
 export interface CreateTaskData {
@@ -34,11 +30,32 @@ export interface CreateTaskData {
   reporterId: string;
   assigneeIds: string[];
   priority: number;
-  attachment?: File;
 }
 
-export interface ApiResponse<T> {
-  data: T;
-  status: boolean;
-  message: string;
+export interface User {
+  userId: string;
+  name: string;
+  email?: string;
+  avatarUrl?: string | null;
+}
+
+export interface Project {
+  projectId: string;
+  projectName: string;
+}
+
+export interface ActivityLog {
+  id: string;
+  taskId: string;
+  taskTitle: string;
+  projectId: string;
+  userId: string;
+  userName: string;
+  avatarUrl: string | null;
+  activityTitle: string;
+  activityDescription: string;
+  stateFrom: string | null;
+  stateTo: string | null;
+  createdAt: string;
+  isDeleted: boolean;
 }
