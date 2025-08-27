@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import { taskApi } from "../Api/Api";
 import type { Task } from "../Api/type";
 import CreateTaskDrawer from "../components/CreateTaskDrawer";
-import TaskOverviewPage from "./TaskOverviewPage";
+import TaskOverviewPage from "../components/TaskOverviewPage";
 
 // Priority Images
 import HighPriority from "../assets/High_Priority.svg";
@@ -64,15 +64,15 @@ const TaskPage: React.FC = () => {
     }
   };
 
-  const handleRowClick = (record: Task) => {
-    setSelectedTaskId(record.id);
+  const handleTaskIdClick = (taskId: string) => {
+    setSelectedTaskId(taskId);
     setTaskOverviewVisible(true);
   };
 
   const columns: ColumnsType<Task> = [
     {
       title: "Project",
-      dataIndex: ["project", "projectName"],
+      dataIndex: "projectId",
       key: "project",
       render: (text) => <Text>{text}</Text>,
     },
@@ -83,9 +83,9 @@ const TaskPage: React.FC = () => {
       render: (id, record) => (
         <Button
           type="link"
-          onClick={() => handleRowClick(record.id)}
           className="custom-link-button"
           style={{ padding: 0, color: "#834666" }}
+          onClick={() => handleTaskIdClick(record.id)}
         >
           {id}
         </Button>
@@ -99,16 +99,17 @@ const TaskPage: React.FC = () => {
     },
     {
       title: "Assigned by",
-      dataIndex: ["reporter", "name"],
+      dataIndex: "reporterId",
       key: "reporter",
+      render: (reporterId) => <Text>{reporterId}</Text>,
     },
     {
       title: "Assignee's",
-      dataIndex: "assignees",
+      dataIndex: "assigneeIds",
       key: "assignees",
-      render: (assignees) => (
+      render: (assigneeIds: string[]) => (
         <Avatar.Group>
-          {assignees?.map((a: any, index: number) => {
+          {assigneeIds?.map((assigneeId: string, index: number) => {
             const colors = [
               "#f56a00",
               "#7265e6",
@@ -120,7 +121,7 @@ const TaskPage: React.FC = () => {
 
             return (
               <Avatar
-                key={a.id}
+                key={assigneeId}
                 style={{
                   backgroundColor: bgColor,
                   fontSize: 12,
@@ -128,10 +129,10 @@ const TaskPage: React.FC = () => {
                   height: 28,
                   marginLeft: index === 0 ? 0 : -8,
                   border: "2px solid #fff",
-                  zIndex: assignees.length - index,
+                  zIndex: assigneeIds.length - index,
                 }}
               >
-                {a.name?.charAt(0).toUpperCase()}
+                {assigneeId.charAt(0).toUpperCase()}
               </Avatar>
             );
           })}
@@ -158,7 +159,7 @@ const TaskPage: React.FC = () => {
         <Row align="middle">
           {getPriorityIcon(priority)}
           <Text>
-            {priority === 2 ? "High" : priority === 1 ? "Normal" : "Low"}
+            {priority === 2 ? "High" : priority === 1 ? "Medium" : "Low"}
           </Text>
         </Row>
       ),
@@ -173,13 +174,10 @@ const TaskPage: React.FC = () => {
           defaultValue={status}
           placeholder="Select Status"
         >
-          {status === 0
-            ? "To do"
-            : status === 1
-            ? "In progress"
-            : status === 2
-            ? "NTD"
-            : "Done"}
+          <Select.Option value={0}>Todo</Select.Option>
+          <Select.Option value={1}>InProgress</Select.Option>
+          <Select.Option value={2}>NTD</Select.Option>
+          <Select.Option value={3}>Done</Select.Option>
         </Select>
       ),
     },
@@ -202,7 +200,6 @@ const TaskPage: React.FC = () => {
           </Button>
         </Col>
         <Col>
-        
           <Input.Search
             placeholder="Search"
             allowClear
@@ -220,9 +217,6 @@ const TaskPage: React.FC = () => {
             dataSource={tasksData || []}
             pagination={false}
             style={{ overflowX: "auto", padding: "8px" }}
-            onRow={(record) => ({
-              onClick: () => handleRowClick(record),
-            })}
           />
         </Col>
       </Row>
@@ -239,6 +233,7 @@ const TaskPage: React.FC = () => {
             setTaskOverviewVisible(false);
             setSelectedTaskId(null);
           }}
+          taskId={selectedTaskId}
         />
       )}
     </>

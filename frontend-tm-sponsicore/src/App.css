@@ -23,4 +23,30 @@
   text-decoration: underline;
   
 }
+.custom-upload .ant-upload-drag {
+  background: #fafafa !important;
+  border: 1px dashed #d9d9d9 !important;
+}
+
+.custom-upload .ant-upload-drag:hover {
+  border-color: #40a9ff !important;
+}
+
+.custom-link-button {
+  color: #834666 !important;
+  text-decoration: underline !important;
+}
+
+.custom-link-button:hover {
+  color: #a25680 !important;
+}
+
+/* Additional antd overrides */
+.ant-drawer-header {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ant-drawer-footer {
+  border-top: 1px solid #f0f0f0;
+}
 
