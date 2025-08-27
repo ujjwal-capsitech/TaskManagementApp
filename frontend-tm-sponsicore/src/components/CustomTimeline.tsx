@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
     Timeline,
@@ -8,6 +9,7 @@ import {
     Dropdown,
     Menu,
     Input,
+    message,
 } from "antd";
 import {
     DeleteOutlined,
@@ -15,7 +17,9 @@ import {
     CloseOutlined,
     CheckOutlined,
 } from "@ant-design/icons";
-import { mockActivityLogs } from "../Api/type";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { activityLogApi } from "../Api/Api";
+import type{ ActivityLogs } from "../Api/type";
 
 // Import your custom assets
 import ThreeDot from "../assets/threedot.svg";
@@ -24,26 +28,55 @@ const { Text } = Typography;
 const { TextArea } = Input;
 
 interface CustomTimelineProps {
-    data: typeof mockActivityLogs;
+    data: ActivityLogs[];
     type: "comment" | "activity";
+    taskId: string;
 }
 
-const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
+const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type, taskId }) => {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [editContent, setEditContent] = useState("");
+    const queryClient = useQueryClient();
 
     // Filter data based on type
     const filteredData = data.filter((item) =>
-        type === "comment" ? item.activityTitle.includes("comment") : true
+        type === "comment" ? item.activityType === "comment" : true
     );
 
+    // Update activity mutation
+    const updateMutation = useMutation({
+        mutationFn: ({ id, content }: { id: string; content: string }) =>
+            activityLogApi.updateActivity(id, { activityDescription: content }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["activityLogs", taskId] });
+            message.success("Comment updated successfully");
+            setEditingId(null);
+            setEditContent("");
+        },
+        onError: () => {
+            message.error("Failed to update comment");
+        },
+    });
+
+    // Delete activity mutation
+    const deleteMutation = useMutation({
+        mutationFn: (id: string) => activityLogApi.deleteActivity(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["activityLogs", taskId] });
+            message.success("Comment deleted successfully");
+        },
+        onError: () => {
+            message.error("Failed to delete comment");
+        },
+    });
+
     // Group by date
-    const groupByDate = (data: typeof mockActivityLogs) => {
+    const groupByDate = (data: ActivityLogs[]) => {
         const today = new Date();
         const yesterday = new Date(today);
         yesterday.setDate(yesterday.getDate() - 1);
 
-        const groups: { [key: string]: typeof mockActivityLogs } = {};
+        const groups: { [key: string]: ActivityLogs[] } = {};
 
         data.forEach((item) => {
             const itemDate = new Date(item.createdAt);
@@ -74,16 +107,15 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
         return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     };
 
-    const handleEdit = (item: any) => {
+    const handleEdit = (item: ActivityLogs) => {
         setEditingId(item.id);
         setEditContent(item.activityDescription);
     };
 
     const handleSave = () => {
-        // Add your save logic here
-        console.log("Saving content:", editContent);
-        setEditingId(null);
-        setEditContent("");
+        if (editingId) {
+            updateMutation.mutate({ id: editingId, content: editContent });
+        }
     };
 
     const handleCancel = () => {
@@ -91,8 +123,12 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
         setEditContent("");
     };
 
+    const handleDelete = (id: string) => {
+        deleteMutation.mutate(id);
+    };
+
     // Menu for 3-dot dropdown
-    const getMenu = (item: any) => (
+    const getMenu = (item: ActivityLogs) => (
         <Menu>
             <Menu.Item
                 key="edit"
@@ -101,7 +137,11 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
             >
                 Edit
             </Menu.Item>
-            <Menu.Item key="delete" icon={<DeleteOutlined style={{ color: "red" }} />}>
+            <Menu.Item
+                key="delete"
+                icon={<DeleteOutlined style={{ color: "red" }} />}
+                onClick={() => handleDelete(item.id)}
+            >
                 Delete
             </Menu.Item>
         </Menu>
@@ -110,7 +150,7 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
     return (
         <Row style={{ position: "relative" }}>
             {/* vertical line */}
-            <Col
+            {/* <Col
                 style={{
                     position: "absolute",
                     left: 16,
@@ -119,7 +159,7 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
                     borderLeft: "1px solid #0000000F",
                     zIndex: 0,
                 }}
-            />
+            /> */}
 
             <Col span={24}>
                 {Object.entries(groupedData).map(([date, items]) => (
@@ -130,13 +170,10 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
                                 <Col>
                                     <Text
                                         style={{
-                                            background: "#F4F5FA",
+                                            background: "#F4F5FA" ,
                                             padding: "2px 8px",
                                             borderRadius: "0px 4px 4px 0px",
-                                            fontSize: 12,
-                                            fontWeight: 500,
-                                            width: 58,
-                                            height: 18,
+                                            fontSize: 13,
                                             display: "flex",
                                             alignItems: "center",
                                             justifyContent: "center",
@@ -154,14 +191,15 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
                             <Timeline
                                 mode="left"
                                 style={{ marginLeft: "10px" }}
-                                items={items.map((item, index) => ({
+                                items={[(   ),
+                                    ...items.map((item, index) => ({
                                     dot: (
                                         <Avatar
                                             size={32}
                                             style={{
                                                 backgroundColor:
                                                     index % 2 === 0 ? "#f56a00" : "#7265e6",
-                                                fontSize: 12,
+                                                fontSize: 13,
                                                 display: "flex",
                                                 alignItems: "center",
                                                 justifyContent: "center",
@@ -192,16 +230,18 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
                                                 <Text type="secondary">
                                                     {formatTime(item.createdAt)}
                                                 </Text>
-                                                <Dropdown
-                                                    overlay={() => getMenu(item)}
-                                                    trigger={["click"]}
-                                                >
-                                                    <img
-                                                        src={ThreeDot}
-                                                        alt="options"
-                                                        style={{ width: 18, cursor: "pointer" }}
-                                                    />
-                                                </Dropdown>
+                                                {type === "comment" && (
+                                                    <Dropdown
+                                                        overlay={() => getMenu(item)}
+                                                        trigger={["click"]}
+                                                    >
+                                                        <img
+                                                            src={ThreeDot}
+                                                            alt="options"
+                                                            style={{ width: 18, cursor: "pointer" }}
+                                                        />
+                                                    </Dropdown>
+                                                )}
                                             </Col>
 
                                             {/* Task title */}
@@ -252,7 +292,7 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type }) => {
                                             </Col>
                                         </Row>
                                     ),
-                                }))}
+                                }))]}
                             />
                         </Col>
                     </Row>

@@ -14,6 +14,7 @@ export interface User {
 }
 
 export interface Project {
+  id: string;
   projectId: string;
   projectName: string;
 
@@ -33,21 +34,22 @@ export interface ActivityLogs {
   stateTo: string | null;
   createdAt: string;
   isDeleted: boolean;
-
+  activityType: "comment" | "activity";
 }
 
-export interface TaskStatus {
-    "Todo" :0,
-    "InProgress" : 1,
-    "NTD" : 2,
-    "Done" : 3,
-}
+export const TaskStatus = {
+    Todo: 0,
+    InProgress: 1,
+    NTD: 2,
+    Done: 3,
+} as const;
 
-export interface Priority {
-    "Low" : 0,
-    "Medium" : 1,
-    "High" : 2,
-}
+export const Priority = {
+    Low: 0,
+    Medium: 1,
+    High: 2,
+} as const;
+
 
 export interface Comment {
     userId: string;
@@ -57,86 +59,31 @@ export interface Comment {
 }
 
 export interface Task {
-    id: string;
-    taskId: string;
-    taskTitle: string;
-    description: string;
-    dueDate: string;
-    projectId: string;
-    reporterId: string;
-    assigneeIds: string[];
-    priority: Priority;
-    status: TaskStatus;
-    createdAt: string;
-    updatedAt?: string;
-    comments?: Comment[];
-    attachments?: Attachment[];
+  id: string;
+  taskId: string;
+  taskTitle: string;
+  description: string;
+  dueDate: string;
+  project: Project;
+  reporter: reporter;
+  assignees: assignee[];
+  priority: Priority;
+  status: TaskStatus;
+  createdAt: string;
+  updatedAt?: string;
+  comment?: Comment[];
+  attachments?: Attachment[];
 }
-
+export interface reporter {
+    reporterId: string;
+    name: string;
+}
+export interface assignee {
+    assigneeId: string;
+    name: string;
+}
 export interface Attachment {
     name: string;
     size: string;
     url: string;
 }
-
-export const mockActivityLogs: ActivityLogs[] = [
-  {
-    id: "1",
-    taskId: "SC-001",
-    taskTitle: "Low fidelity for the website",
-    projectId: "P-001",
-    userId: "U-01",
-    userName: "Guy Hawkins",
-    avatarUrl: null,
-    activityTitle: "added a comment on",
-    activityDescription: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    stateFrom: null,
-    stateTo: null,
-    createdAt: "2025-08-27T19:54:00",
-    isDeleted: false,
-  },
-  {
-    id: "2",
-    taskId: "SC-001",
-    taskTitle: "Low fidelity for the website",
-    projectId: "P-001",
-    userId: "U-02",
-    userName: "Theresa Webb",
-    avatarUrl: null,
-    activityTitle: "added a comment on",
-    activityDescription: "Another comment for testing timeline UI.",
-    stateFrom: null,
-    stateTo: null,
-    createdAt: "2025-08-27T19:54:00",
-    isDeleted: false,
-  },
-];
-// export interface User {
-//   userId: string;
-//   name: string;
-//   email?: string;
-//   avatar?: string;
-// }
-
-// export interface Project {
-//   projectId: string;
-//   projectName: string;
-//   description?: string;
-// }
-
-// export interface Task {
-//   id?: string;
-//   taskId?: string;
-//   taskTitle: string;
-//   description?: string;
-//   dueDate: string;
-//   projectId: string;
-//   reporterId: string;
-//   assigneeIds: string[];
-//   priority: number;
-//   status?: number;
-//   createdAt?: string;
-//   project?: Project;
-//   reporter?: User;
-//   assignees?: User[];
-// }

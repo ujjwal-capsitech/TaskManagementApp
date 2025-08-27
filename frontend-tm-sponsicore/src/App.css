@@ -7,7 +7,7 @@
     top: 20px;
     right: 0;
 }
-.drawer-title {
+/*.drawer-title {
   margin: 0;
   font-size: 16px;
 }
@@ -39,14 +39,14 @@
 
 .custom-link-button:hover {
   color: #a25680 !important;
-}
+}*/
 
 /* Additional antd overrides */
-.ant-drawer-header {
+/*.ant-drawer-header {
   border-bottom: 1px solid #f0f0f0;
 }
 
 .ant-drawer-footer {
   border-top: 1px solid #f0f0f0;
-}
+}*/
 

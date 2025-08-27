@@ -8,19 +8,23 @@ import {
   Typography,
   Input,
   Select,
+  Space,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useQuery } from "@tanstack/react-query";
-import { taskApi } from "../Api/Api";
-import type { Task } from "../Api/type";
+import { taskApi, projectApi } from "../Api/Api";
+import type { Project, Task } from "../Api/type";
 import CreateTaskDrawer from "../components/CreateTaskDrawer";
 import TaskOverviewPage from "../components/TaskOverviewPage";
+import { TaskStatus, Priority } from "../Api/type";
 
 // Priority Images
 import HighPriority from "../assets/High_Priority.svg";
 import LowPriority from "../assets/Low_Priority.svg";
 import NormalPriority from "../assets/Nornal_Priority.svg";
 import "../App.css";
+import dayjs from "dayjs";
+
 const { Text } = Typography;
 
 const TaskPage: React.FC = () => {
@@ -31,6 +35,10 @@ const TaskPage: React.FC = () => {
   const { data: tasksData, isLoading } = useQuery({
     queryKey: ["tasks"],
     queryFn: () => taskApi.getTasks().then((res) => res.data.data),
+  });
+  const { data: projectsData } = useQuery({
+    queryKey: ["projects"],
+    queryFn: () => projectApi.getProjects().then((res) => res.data.data),
   });
 
   const getPriorityIcon = (priority: number) => {
@@ -68,13 +76,22 @@ const TaskPage: React.FC = () => {
     setSelectedTaskId(taskId);
     setTaskOverviewVisible(true);
   };
+  const invert = (obj: Record<string, number>) =>
+    Object.entries(obj).reduce((acc, [key, value]) => {
+      acc[value] = key;
+      return acc;
+    }, {} as Record<number, string>);
 
+  const taskStatusLabels = invert(TaskStatus);
+  const priorityLabels = invert(Priority);
   const columns: ColumnsType<Task> = [
     {
       title: "Project",
-      dataIndex: "projectId",
-      key: "project",
-      render: (text) => <Text>{text}</Text>,
+      dataIndex: "projectName",
+      key: "projectName",
+      render: (_, record) => (
+        <Text>{record.project?.projectName || "N/A"}</Text>
+      ),
     },
     {
       title: "Task Id",
@@ -85,7 +102,7 @@ const TaskPage: React.FC = () => {
           type="link"
           className="custom-link-button"
           style={{ padding: 0, color: "#834666" }}
-          onClick={() => handleTaskIdClick(record.id)}
+          onClick={() => handleTaskIdClick(record.taskId)}
         >
           {id}
         </Button>
@@ -101,15 +118,14 @@ const TaskPage: React.FC = () => {
       title: "Assigned by",
       dataIndex: "reporterId",
       key: "reporter",
-      render: (reporterId) => <Text>{reporterId}</Text>,
+      render: (_, record) => <Text>{record.reporter?.name||"N/A"}</Text>,
     },
     {
       title: "Assignee's",
-      dataIndex: "assigneeIds",
       key: "assignees",
-      render: (assigneeIds: string[]) => (
+      render: (_, record) => (
         <Avatar.Group>
-          {assigneeIds?.map((assigneeId: string, index: number) => {
+          {record.assignees?.map((assignee: any, index: number) => {
             const colors = [
               "#f56a00",
               "#7265e6",
@@ -121,7 +137,7 @@ const TaskPage: React.FC = () => {
 
             return (
               <Avatar
-                key={assigneeId}
+                key={assignee.assigneeId}
                 style={{
                   backgroundColor: bgColor,
                   fontSize: 12,
@@ -129,27 +145,28 @@ const TaskPage: React.FC = () => {
                   height: 28,
                   marginLeft: index === 0 ? 0 : -8,
                   border: "2px solid #fff",
-                  zIndex: assigneeIds.length - index,
+                  zIndex: record.assignees.length - index,
                 }}
               >
-                {assigneeId.charAt(0).toUpperCase()}
+                {assignee.name.charAt(0).toUpperCase()}
               </Avatar>
             );
           })}
         </Avatar.Group>
       ),
     },
+
     {
       title: "Assigned date",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (date: string) => new Date(date).toLocaleDateString(),
+      render: (date: string) => dayjs(date).format("DD MM YYYY"),
     },
     {
       title: "Due date",
       dataIndex: "dueDate",
       key: "dueDate",
-      render: (date: string) => new Date(date).toLocaleDateString(),
+      render: (date: string) => dayjs(date).format("DD MM YYYY"),
     },
     {
       title: "Priority",
@@ -174,10 +191,11 @@ const TaskPage: React.FC = () => {
           defaultValue={status}
           placeholder="Select Status"
         >
-          <Select.Option value={0}>Todo</Select.Option>
-          <Select.Option value={1}>InProgress</Select.Option>
-          <Select.Option value={2}>NTD</Select.Option>
-          <Select.Option value={3}>Done</Select.Option>
+          {Object.values(TaskStatus).map((value) => (
+            <Select.Option key={value} value={value}>
+              {taskStatusLabels[value]}
+            </Select.Option>
+          ))}
         </Select>
       ),
     },
@@ -188,7 +206,7 @@ const TaskPage: React.FC = () => {
       <Row
         justify="space-between"
         align="middle"
-        style={{margin:"8px  8px", padding: "8px" }}
+        style={{ margin: "8px  8px", padding: "8px" }}
       >
         <Col>
           <Button
@@ -199,13 +217,60 @@ const TaskPage: React.FC = () => {
             + Task
           </Button>
         </Col>
-        <Col>
-          <Input.Search
-            placeholder="Search"
-            allowClear
-            style={{ width: 200 }}
-          />
-        </Col>
+        <Space>
+          <Col>
+            <Select
+              placeholder="Priority"
+              style={{
+                fontSize: "13px",
+                borderRadius: "4px",
+                height: "28px",
+                width: "242px",
+              }}
+              size="middle"
+            >
+              {Object.values(Priority).map((value) => (
+                <Select.Option key={value} value={value}>
+                  {priorityLabels[value]}
+                </Select.Option>
+              ))}
+            </Select>
+          </Col>
+          <Col>
+            <Select
+              placeholder="Project"
+              style={{
+                fontSize: "13px",
+                borderRadius: "4px",
+                height: "28px",
+                width: "242px",
+              }}
+              size="middle"
+            >
+              {projectsData?.map((project: Project) => (
+                <Select.Option
+                  key={project.projectId}
+                  value={project.projectId}
+                >
+                  {project.projectName}
+                </Select.Option>
+              ))}
+            </Select>
+          </Col>
+          <Col>
+            <Input.Search
+              placeholder="Search"
+              allowClear
+              style={{
+                fontSize: "13px",
+                borderRadius: "4px",
+                height: "28px",
+                width: "242px",
+              }}
+              size="middle"
+            />
+          </Col>
+        </Space>
       </Row>
 
       <Row>
