@@ -134,16 +134,12 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
     return (
       <Drawer
         title={
-          <Row gutter={16} align="middle">
-            <Col span={12} style={{ borderRight: "1px solid #eee" }}>
-              <span style={{ fontSize: "13px", color: "#464155" }}>
-                Task Overview
-              </span>
+          <Row gutter={16} align="middle" className="drawer-title-row">
+            <Col span={12} className="drawer-title-col">
+              <span className="drawer-title-text">Task Overview</span>
             </Col>
-            <Col span={12}>
-              <span style={{ fontSize: "13px", color: "#464155" }}>
-                Task Log
-              </span>
+            <Col span={12} className="drawer-title-col">
+              <span className="drawer-title-text">Task Log</span>
             </Col>
           </Row>
         }
@@ -156,20 +152,11 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
           padding: "16px 24px",
         }}
         footer={
-          <Row gutter={16} justify="end" style={{ marginTop: "24px" }}>
+          <Row gutter={16} justify="end" className="footer-row">
             <Col>
               <Button
                 onClick={onClose}
-                style={{
-                  background: "#EEEFF4",
-                  width: "82px",
-                  height: "28px",
-                  fontSize: "13px",
-                  textAlign: "center",
-                  alignContent: "center",
-                  borderRadius: "4px",
-                  color: "#834666",
-                }}
+                className="cancel-button"
                 size="large"
               >
                 Cancel
@@ -179,15 +166,7 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
               <Button
                 type="primary"
                 onClick={() => form.submit()}
-                style={{
-                  width: "82px",
-                  height: "28px",
-                  background: "#01B075",
-                  fontSize: "13px",
-                  textAlign: "center",
-                  alignContent: "center",
-                  borderRadius: "4px",
-                }}
+                className="save-button"
                 size="large"
                 loading={updateTaskMutation.isPending}
               >
@@ -212,34 +191,24 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
         >
           <Row gutter={24}>
             {/* Left Column - Task Overview */}
-            <Col span={12} style={{ paddingRight: "12px" }}>
+            <Col span={12} className="left-column">
               {/* Project Field */}
 
               <Row
                 gutter={4}
-                style={{ marginBottom: "16px", alignItems: "center" }}
+                className="form-row"
               >
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Project
-                  </span>
+                  <span>Project</span>
                 </Col>
 
                 <Col span={19}>
-                  <Form.Item name="project" style={{ marginBottom: 0 }}>
+                  <Form.Item name="project" className="form-item">
                     <Select
-                      style={{
-                        fontSize: "13px",
-                        borderRadius: "4px",
-                        width: "100%",
-                      }}
+                      className="form-select"
                       size="middle"
                       disabled
                     >
@@ -257,23 +226,17 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
               </Row>
 
               {/* Title Field */}
-              <Row gutter={16}>
+              <Row gutter={16} className="form-row">
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Title
-                  </span>
+                  <span>Title</span>
                 </Col>
                 <Col span={19}>
-                  <Form.Item name="title" style={{ marginBottom: 0 }}>
+                  <Form.Item name="title" className="form-item">
                     <Input
-                      style={{ fontSize: "13px", borderRadius: "4px" }}
+                      className="form-input"
                       size="middle"
                     />
                   </Form.Item>
@@ -281,25 +244,19 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
               </Row>
 
               {/* Description Field */}
-              <Row gutter={16} style={{ marginTop: "16px" }}>
+              <Row gutter={16} className="form-row">
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Description
-                  </span>
+                  <span>Description</span>
                 </Col>
                 <Col span={19}>
-                  <Form.Item name="description" style={{ marginBottom: 0 }}>
+                  <Form.Item name="description" className="form-item">
                     <Input.TextArea
                     maxLength={100}
                       rows={4}
-                      style={{ fontSize: "13px", borderRadius: "4px" }}
+                      className="form-textarea"
                       size="middle"
                     />
                   </Form.Item>
@@ -307,27 +264,17 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
               </Row>
 
               {/* Due Date Field */}
-              <Row gutter={16} style={{ marginTop: "16px" }}>
+              <Row gutter={16} className="form-row">
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Due date
-                  </span>
+                  <span>Due date</span>
                 </Col>
                 <Col span={12}>
-                  <Form.Item name="dueDate" style={{ marginBottom: 0 }}>
+                  <Form.Item name="dueDate" className="form-item">
                     <DatePicker
-                      style={{
-                        width: "100%",
-                        fontSize: "13px",
-                        borderRadius: "4px",
-                      }}
+                      className="form-datepicker"
                       placeholder="Select date"
                       size="middle"
                     />
@@ -336,18 +283,12 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
               </Row>
 
               {/* Priority Field */}
-              <Row gutter={16} style={{ marginTop: "16px" }}>
+              <Row gutter={16} className="form-row">
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Priority
-                  </span>
+                  <span>Priority</span>
                 </Col>
                 <Col span={9}>
                   <Form.Item
@@ -356,14 +297,10 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
                       { required: true, message: "priority is required" }
                       
                     ]}
-                    style={{ marginBottom: 0 }}
+                    className="form-item"
                   >
                     <Select
-                      style={{
-                        fontSize: "13px",
-                        borderRadius: "4px",
-                        width: "100%",
-                      }}
+                      className="form-select"
                       size="middle"
                     >
                       {Object.values(Priority).map((value) => (
@@ -377,27 +314,17 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
               </Row>
 
               {/* Status Field */}
-              <Row gutter={16} style={{ marginTop: "16px" }}>
+              <Row gutter={16} className="form-row">
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Status
-                  </span>
+                  <span>Status</span>
                 </Col>
                 <Col span={9}>
-                  <Form.Item name="status" style={{ marginBottom: 0 }}>
+                  <Form.Item name="status" className="form-item">
                     <Select
-                      style={{
-                        fontSize: "13px",
-                        borderRadius: "4px",
-                        width: "100%",
-                      }}
+                      className="form-select"
                       size="middle"
                     >
                       {Object.values(TaskStatus).map((value) => (
@@ -411,42 +338,30 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
               </Row>
 
               {/* Assigned by Field */}
-              <Row gutter={16} style={{ marginTop: "16px" }}>
+              <Row gutter={16} className="form-row">
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Assigned by
-                  </span>
+                  <span>Assigned by</span>
                 </Col>
                 <Col span={19}>
-                  <Text style={{ fontSize: "13px" }}>
+                  <Text className="form-text">
                     {taskData?.reporter?.name || "Unknown"}
                   </Text>
                 </Col>
               </Row>
 
               {/* Assignee Field */}
-              <Row gutter={16} style={{ marginTop: "16px" }}>
+              <Row gutter={16} className="form-row">
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Assignee
-                  </span>
+                  <span>Assignee</span>
                 </Col>
                 <Col span={19}>
-                  <Avatar.Group>
+                  <Avatar.Group className="avatar-group">
                     {taskData?.assignees?.map(
                       (assignee: any, index: number) => {
                         const colors = [
@@ -460,14 +375,8 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
                         return (
                           <Avatar
                             key={assignee.assigneeId}
-                            style={{
-                              backgroundColor: bgColor,
-                              fontSize: 12,
-                              width: 28,
-                              height: 28,
-                              marginLeft: index === 0 ? 0 : -8,
-                              border: "2px solid #fff",
-                            }}
+                            className="assignee-avatar"
+                            style={{ backgroundColor: bgColor }}
                           >
                             {assignee.name?.charAt(0).toUpperCase()}
                           </Avatar>
@@ -479,21 +388,15 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
               </Row>
 
               {/* Attachment Field */}
-              <Row gutter={16} style={{ marginTop: "16px" }}>
+              <Row gutter={16} className="form-row">
                 <Col
                   span={5}
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    paddingLeft: "8px",
-                  }}
+                  className="form-label"
                 >
-                  <span style={{ fontSize: "13px", color: "#464155" }}>
-                    Attachment
-                  </span>
+                  <span>Attachment</span>
                 </Col>
                 <Col span={19}>
-                  <Form.Item name="attachment", label="attachment">
+                  <Form.Item name="attachment" className="form-item">
                     <Upload.Dragger
                       className="custom-upload"
                       name="file"
@@ -503,30 +406,16 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
                         showPreviewIcon: true,
                         showRemoveIcon: true,
                       }}
-                      style={{
-                        height: "153.82px",
-                        width: "100%",
-                        backgroundColor: "#ffffff",
-                        border: "1px dashed #d9d9d9",
-                        borderRadius: "6px",
-
-                        textAlign: "center",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        fontSize: "13px",
-                      }}
                     >
                       <p className="ant-upload-drag-icon">
                         <img
                           src={Attachment2}
                           alt="attachment"
-                          style={{ width: "85.42px", height: "87.82px" }}
+                          className="attachment-image"
                         />
                       </p>
                       <p
                         className="ant-upload-text"
-                        style={{ fontSize: "13px", margin: "4px 0" }}
                       >
                         Click or drag file to this area to upload
                       </p>
@@ -539,45 +428,21 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
             {/* Right Column - Task Logs */}
             <Col
               span={12}
-              style={{ paddingLeft: "12px", borderLeft: "1px solid #f0f0f0" }}
+              className="right-column"
             >
-              {/* <Title
-                level={5}
-                style={{ fontSize: "14px", marginBottom: "16px" }}
-              >
-                Task Logs
-              </Title> */}
-
               {/* Toggle and Month Selector */}
               <Row
                 justify="space-between"
                 align="middle"
-                style={{ marginBottom: "16px" }}
+                className="toggle-row"
               >
                 <Col
-                  style={{
-                    background: "#F4F5FA",
-                    width: "164px",
-                    height: "32px",
-                    padding: "2px",
-                    borderRadius: "4px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
+                  className="toggle-group"
                 >
                   <Button
                     size="middle"
                     onClick={() => setActiveTab("comment")}
-                    style={{
-                      flex: 1,
-                      fontSize: "13px",
-                      border: "none",
-                      boxShadow: "none",
-                      backgroundColor:
-                        activeTab === "comment" ? "#FFFFFF" : "transparent",
-                      color: activeTab === "comment" ? "#79435F" : "#000",
-                      borderRadius: "4px",
-                    }}
+                    className={`toggle-button ${activeTab === "comment" ? "active" : ""}`}
                   >
                     Comment
                   </Button>
@@ -585,15 +450,7 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
                   <Button
                     size="middle"
                     onClick={() => setActiveTab("activity")}
-                    style={{
-                      flex: 1,
-                      fontSize: "13px",
-                      border: "none",
-                      backgroundColor:
-                        activeTab === "activity" ? "#fff" : "transparent",
-                      color: activeTab === "activity" ? "#79435F" : "#000",
-                      borderRadius: "4px",
-                    }}
+                    className={`toggle-button ${activeTab === "activity" ? "active" : ""}`}
                   >
                     Activity
                   </Button>
@@ -601,18 +458,14 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
 
                 <Col>
                   <span
-                    style={{
-                      fontSize: "13px",
-                      color: "#00000073",
-                      marginRight: "8px",
-                    }}
+                    className="month-label"
                   >
                     Month
                   </span>
                   <Select
                     value={selectedMonth}
                     onChange={setSelectedMonth}
-                    style={{ fontSize: "13px", width: "118px", height: "28px" }}
+                    className="month-selector"
                     size="middle"
                   >
                     {months.map((month) => (
@@ -624,33 +477,24 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
                 </Col>
               </Row>
 
-              <Divider style={{ margin: "16px 0" }} />
+              <Divider className="divider" />
 
               {/* Current User Avatar and Add Comment */}
               {activeTab === "comment" && (
                 <>
-                  <Row align="middle" style={{ marginBottom: "16px" }}>
+                  <Row align="middle" className="comment-row">
                     <Col span={2}>
                       <Avatar
                         src={CurrentUserImage}
                         size={32}
-                        style={{
-                          width: 32,
-                          height: 32,
-                          borderRadius: "100px",
-                          marginRight: "8px",
-                        }}
+                        className="user-avatar"
                       />
                     </Col>
-                    <Col span={22} style={{ paddingLeft: "8px" }}>
+                    <Col span={22} className="comment-textarea-col">
                       <TextArea
                         placeholder="Autosize height based on content lines"
                         rows={4}
-                        style={{
-                          fontSize: "13px",
-                          borderRadius: "4px",
-                          width: "100%",
-                        }}
+                        className="comment-textarea"
                         size="middle"
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
@@ -659,32 +503,25 @@ const TaskOverviewPage: React.FC<TaskOverviewPageProps> = ({
                   </Row>
                   <Row justify="end">
                     <Col
-                      style={{ display: "flex", justifyContent: "flex-end" }}
+                      className="add-comment-button-col"
                     >
                       <Button
                         type="primary"
                         size="middle"
                         onClick={handleAddComment}
                         disabled={!newComment.trim()}
-                        style={{
-                          backgroundColor: "#01B075",
-                          color: "#fff",
-                          fontSize: "13px",
-                          width: "128px",
-                          height: "28px",
-                          borderRadius: "4px",
-                        }}
+                        className="add-comment-button"
                       >
                         Add Comment
                       </Button>
                     </Col>
                   </Row>
-                  <Divider style={{ margin: "16px 0" }} />
+                  <Divider className="divider" />
                 </>
               )}
 
               {/* Comments/Activity List */}
-              <Row style={{ flexDirection: "column" }}>
+              <Row className="timeline-row">
                 {activeTab === "comment" ? (
                   <CustomTimeline
                     data={activityLogsData || []}

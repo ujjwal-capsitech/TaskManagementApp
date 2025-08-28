@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("backend-tm-sponsicore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2303263f6052ecc9a9ede5c70f91435f0679ff21")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b938f50319093681863d42f5d5abe016b3820b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("backend-tm-sponsicore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("backend-tm-sponsicore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

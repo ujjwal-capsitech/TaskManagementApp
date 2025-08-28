@@ -1,52 +1,232 @@
+/* Common styles */
+.drawer-title-row {
+  border-right: 1px solid #eee;
+}
 
-.custom-upload .ant-upload-list-item-name {
-  color: "#01B075" !important;
+.drawer-title-col {
+  border-right: 1px solid #eee;
 }
-.ant-drawer-close {
-    position: absolute;
-    top: 20px;
-    right: 0;
+
+.drawer-title-text {
+  font-size: 13px;
+  color: #464155;
 }
-/*.drawer-title {
+
+.drawer-header-title {
   margin: 0;
   font-size: 16px;
 }
 
-.drawer-footer {
+.footer-row {
   margin-top: 24px;
 }
-.custom-link-button {
-  text-decoration: underline;
+
+.cancel-button {
+  background: #EEEFF4;
+  width: 82px;
+  height: 28px;
+  font-size: 13px;
+  text-align: center;
+  align-content: center;
+  border-radius: 4px;
+  color: #834666;
 }
 
-.custom-link-button:hover {
-  text-decoration: underline;
-  
-}
-.custom-upload .ant-upload-drag {
-  background: #fafafa !important;
-  border: 1px dashed #d9d9d9 !important;
-}
-
-.custom-upload .ant-upload-drag:hover {
-  border-color: #40a9ff !important;
+.save-button {
+  width: 82px;
+  height: 28px;
+  background: #01B075;
+  font-size: 13px;
+  text-align: center;
+  align-content: center;
+  border-radius: 4px;
 }
 
-.custom-link-button {
-  color: #834666 !important;
-  text-decoration: underline !important;
+/* Form styles */
+.left-column {
+  padding-right: 12px;
 }
 
-.custom-link-button:hover {
-  color: #a25680 !important;
-}*/
+.right-column {
+  padding-left: 12px;
+  border-left: 1px solid #f0f0f0;
+}
 
-/* Additional antd overrides */
-/*.ant-drawer-header {
+.form-row {
+  margin-top: 16px;
+  align-items: center;
+}
+
+.form-label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 13px;
+  color: #464155;
+}
+
+.form-item {
+  margin-bottom: 0;
+}
+
+.form-input,
+.form-select,
+.form-textarea,
+.form-datepicker {
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.form-text {
+  font-size: 13px;
+}
+
+/* Avatar styles */
+.avatar-group {
+  display: flex;
+}
+
+.assignee-avatar {
+  font-size: 12px;
+  width: 28px;
+  height: 28px;
+  margin-left: -8px;
+  border: 2px solid #fff;
+}
+
+.assignee-avatar:first-child {
+  margin-left: 0;
+}
+
+/* Upload styles */
+.custom-upload {
+  height: 153.82px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.custom-upload .ant-upload-list-item-name {
+  color: #01B075 !important;
+}
+
+.attachment-image {
+  width: 85px;
+  height: 87px;
+}
+
+.ant-upload-text {
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+/* Toggle styles */
+.toggle-row {
+  margin-bottom: 16px;
+}
+
+.toggle-group {
+  background: #F4F5FA;
+  width: 164px;
+  height: 32px;
+  padding: 2px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-button {
+  flex: 1;
+  font-size: 13px;
+  border: none;
+  box-shadow: none;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #000;
+}
+
+.toggle-button.active {
+  background-color: #FFFFFF;
+  color: #79435F;
+}
+
+.month-label {
+  font-size: 13px;
+  color: #00000073;
+  margin-right: 8px;
+}
+
+.month-selector {
+  font-size: 13px;
+  width: 118px;
+  height: 28px;
+}
+
+.divider {
+  margin: 16px 0;
+}
+
+/* Comment styles */
+.comment-row {
+  margin-bottom: 16px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 100px;
+  margin-right: 8px;
+}
+
+.comment-textarea-col {
+  padding-left: 8px;
+}
+
+.comment-textarea {
+  font-size: 13px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.add-comment-button-col {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-comment-button {
+  background-color: #01B075;
+  color: #fff;
+  font-size: 13px;
+  width: 128px;
+  height: 28px;
+  border-radius: 4px;
+}
+
+.timeline-row {
+  flex-direction: column;
+}
+
+/* Additional styles for CreateTaskDrawer */
+.create-task-drawer .ant-drawer-body {
+  padding: 24px;
+}
+
+.create-task-drawer .ant-drawer-header {
   border-bottom: 1px solid #f0f0f0;
+  padding: 16px 24px;
 }
 
-.ant-drawer-footer {
-  border-top: 1px solid #f0f0f0;
-}*/
-
+/* Drawer close button positioning */
+.ant-drawer-close {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}

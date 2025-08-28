@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\activityservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\services\\activityservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\taskservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\services\\taskservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\projectservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\services\\projectservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,16 +27,8 @@
       "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\projectservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\services\\projectservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\activityservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|solutionrelative:backend-tm-sponsicore\\services\\activityservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D43EB6AE-2B67-4CB2-AA40-EE8ACFECB296}|backend-tm-sponsicore\\backend-tm-sponsicore.csproj|d:\\web\\new\\taskmanagementapp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\userservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -94,27 +94,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "WeatherForecastController.cs",
-              "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Controllers\\WeatherForecastController.cs",
-              "RelativeDocumentMoniker": "backend-tm-sponsicore\\Controllers\\WeatherForecastController.cs",
-              "ToolTip": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Controllers\\WeatherForecastController.cs",
-              "RelativeToolTip": "backend-tm-sponsicore\\Controllers\\WeatherForecastController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-25T09:43:28.223Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "projectServices.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\projectServices.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\services\\projectServices.cs",
               "ToolTip": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\projectServices.cs",
               "RelativeToolTip": "backend-tm-sponsicore\\services\\projectServices.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAADAAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-25T08:16:13.117Z"
+              "WhenOpened": "2025-08-25T08:16:13.117Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -130,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "user.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Models\\user.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\Models\\user.cs",
@@ -154,19 +143,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Task.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Models\\Task.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\Models\\Task.cs",
               "ToolTip": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Models\\Task.cs",
               "RelativeToolTip": "backend-tm-sponsicore\\Models\\Task.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAEcAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAIwEUAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-25T06:51:36.697Z"
+              "WhenOpened": "2025-08-25T06:51:36.697Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Program.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\Program.cs",
@@ -178,32 +168,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "taskServices.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\taskServices.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\services\\taskServices.cs",
               "ToolTip": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\taskServices.cs",
               "RelativeToolTip": "backend-tm-sponsicore\\services\\taskServices.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAA1wDsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAADsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-25T11:30:14.448Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "activityServices.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\activityServices.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\services\\activityServices.cs",
-              "ToolTip": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\activityServices.cs",
-              "RelativeToolTip": "backend-tm-sponsicore\\services\\activityServices.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAwwBEAAAAhAAAAAAAAAA==",
+              "ToolTip": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\services\\activityServices.cs*",
+              "RelativeToolTip": "backend-tm-sponsicore\\services\\activityServices.cs*",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwB4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-25T08:15:05.121Z"
+              "WhenOpened": "2025-08-25T08:15:05.121Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 14,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "backend-tm-sponsicore\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "backend-tm-sponsicore\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T09:43:28.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ProjectController.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Controllers\\ProjectController.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\Controllers\\ProjectController.cs",
@@ -215,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "activityController.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Controllers\\activityController.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\Controllers\\activityController.cs",
@@ -227,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "taskController.cs",
               "DocumentMoniker": "D:\\Web\\new\\TaskManagementApp\\backend-tm-sponsicore\\backend-tm-sponsicore\\Controllers\\taskController.cs",
               "RelativeDocumentMoniker": "backend-tm-sponsicore\\Controllers\\taskController.cs",

@@ -136,7 +136,7 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
     <Drawer
       title={
         <Col>
-          <Title level={4} style={{ margin: 0, fontSize: "16px" }}>
+          <Title level={4} className="drawer-header-title">
             Add Task
           </Title>
         </Col>
@@ -150,19 +150,11 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
         padding: "16px 24px",
       }}
       footer={
-        <Row gutter={16} justify="end" style={{ marginTop: "24px" }}>
+        <Row gutter={16} justify="end" className="footer-row">
           <Col>
             <Button
               onClick={onClose}
-              style={{
-                background: "#EEEFF4",
-                width: "82px",
-                height: "28px",
-                fontSize: "13px",
-                textAlign: "center",
-                borderRadius: "4px",
-                color: "#834666",
-              }}
+              className="cancel-button"
               size="large"
             >
               Cancel
@@ -172,14 +164,7 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
             <Button
               type="primary"
               onClick={() => form.submit()}
-              style={{
-                width: "82px",
-                height: "28px",
-                background: "#01B075",
-                fontSize: "13px",
-                textAlign: "center",
-                borderRadius: "4px",
-              }}
+              className="save-button"
               size="large"
               loading={createTaskMutation.isLoading}
             >
@@ -191,16 +176,17 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
     >
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
         {/* Project */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>Project</span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Project</span>
           </Col>
           <Col span={19}>
             <Form.Item
               name="project"
               rules={[{ required: true, message: "Please select a project" }]}
+              className="form-item"
             >
-              <Select placeholder="Project" size="middle">
+              <Select placeholder="Project" size="middle" className="form-select">
                 {projectsData?.map((project: Project) => (
                   <Option key={project.projectId} value={project.projectId}>
                     {project.projectName}
@@ -212,31 +198,33 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
         </Row>
 
         {/* Title */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>Title</span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Title</span>
           </Col>
           <Col span={19}>
             <Form.Item
               name="title"
               rules={[{ required: true, message: "Please enter task title" }]}
+              className="form-item"
             >
-              <Input placeholder="Enter task title" size="small" />
+              <Input placeholder="Enter task title" size="small" className="form-input" />
             </Form.Item>
           </Col>
         </Row>
 
         {/* Reporter */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>Reporter</span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Reporter</span>
           </Col>
           <Col span={19}>
             <Form.Item
               name="reporter"
               rules={[{ required: true, message: "Please select a reporter" }]}
+              className="form-item"
             >
-              <Select placeholder="Select reporter" size="small">
+              <Select placeholder="Select reporter" size="small" className="form-select">
                 {usersData?.map((user: User) => (
                   <Option key={user.userId} value={user.userId}>
                     {user.name}
@@ -248,21 +236,21 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
         </Row>
 
         {/* Assignees */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>
-              Assignees
-            </span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Assignees</span>
           </Col>
           <Col span={19}>
             <Form.Item
               name="assignees"
               rules={[{ required: true, message: "Please select assignees" }]}
+              className="form-item"
             >
               <Select
                 mode="multiple"
                 placeholder="Select assignees"
                 size="small"
+                className="form-select"
               >
                 {usersData?.map((user: User) => (
                   <Option key={user.userId} value={user.userId}>
@@ -275,30 +263,29 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
         </Row>
 
         {/* Description */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>
-              Description
-            </span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Description</span>
           </Col>
           <Col span={19}>
-            <Form.Item name="description">
-              <TextArea rows={4} placeholder="Enter description" size="small" />
+            <Form.Item name="description" className="form-item">
+              <TextArea rows={4} placeholder="Enter description" size="small" className="form-textarea" />
             </Form.Item>
           </Col>
         </Row>
 
         {/* Priority */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>Priority</span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Priority</span>
           </Col>
           <Col span={9}>
             <Form.Item
               name="priority"
               rules={[{ required: true, message: "Please select priority" }]}
+              className="form-item"
             >
-              <Select placeholder="Select priority" size="small">
+              <Select placeholder="Select priority" size="small" className="form-select">
                 {Object.values(Priority).map((value) => (
                   <Option key={value} value={value}>
                     {priorityLabels[value]}
@@ -310,13 +297,13 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
         </Row>
 
         {/* Status */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>Status</span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Status</span>
           </Col>
           <Col span={9}>
-            <Form.Item name="status">
-              <Select placeholder="Select status" size="small">
+            <Form.Item name="status" className="form-item">
+              <Select placeholder="Select status" size="small" className="form-select">
                 {Object.values(TaskStatus).map((value) => (
                   <Option key={value} value={value}>
                     {taskStatusLabels[value]}
@@ -328,17 +315,18 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
         </Row>
 
         {/* Due Date */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>Due Date</span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Due Date</span>
           </Col>
           <Col span={12}>
             <Form.Item
               name="dueDate"
               rules={[{ required: true, message: "Please select due date" }]}
+              className="form-item"
             >
               <DatePicker
-                style={{ width: "100%" }}
+                className="form-datepicker"
                 placeholder="Select date"
                 size="small"
               />
@@ -347,14 +335,12 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
         </Row>
 
         {/* Attachment */}
-        <Row gutter={16}>
-          <Col span={5} style={{ display: "flex", alignItems: "center" }}>
-            <span style={{ fontSize: "13px", color: "#464155" }}>
-              Attachment
-            </span>
+        <Row gutter={16} className="form-row">
+          <Col span={5} className="form-label">
+            <span>Attachment</span>
           </Col>
           <Col span={19}>
-            <Form.Item name="attachment">
+            <Form.Item name="attachment" className="form-item">
               <Upload.Dragger
                 className="custom-upload"
                 multiple={false}
@@ -370,7 +356,7 @@ const CreateTaskDrawer: React.FC<CreateTaskDrawerProps> = ({
                   <img
                     src={Attachment}
                     alt="attachment"
-                    style={{ width: "85px", height: "87px" }}
+                    className="attachment-image"
                   />
                 </p>
                 <p className="ant-upload-text">

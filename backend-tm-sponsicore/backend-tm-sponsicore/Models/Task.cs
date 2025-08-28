@@ -67,6 +67,9 @@ namespace backend_tm_sponsicore.Models
 
     public class Project
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? id { get; set; }
         public string? ProjectId { get; set; }
         public string? ProjectName { get; set; }
     }

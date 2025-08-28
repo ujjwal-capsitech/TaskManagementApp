@@ -191,8 +191,7 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type, taskId }) =
                             <Timeline
                                 mode="left"
                                 style={{ marginLeft: "10px" }}
-                                items={[(   ),
-                                    ...items.map((item, index) => ({
+                                items={items.map((item, index) => ({
                                     dot: (
                                         <Avatar
                                             size={32}
@@ -292,7 +291,7 @@ const CustomTimeline: React.FC<CustomTimelineProps> = ({ data, type, taskId }) =
                                             </Col>
                                         </Row>
                                     ),
-                                }))]}
+                                }))}
                             />
                         </Col>
                     </Row>
